@@ -1,0 +1,14 @@
+C=0,H=128
+draw=_=>{
+	createCanvas(W=windowWidth,windowHeight)
+	noFill()
+	C+=0.002
+	for(j=0;j<W;j+=H)for(i=0;i<W;i+=H)D(i,j,H)
+}
+D=(x,y,s)=>{
+	a=x+s/2,b=y+s/2
+	abs(noise(a/W,b/W,mag(a,b)/W-C)-0.5)>
+	map(s,4,H,0.05,0.18)?
+	square(x,y,s):
+	(s/=2)>=4&&(D(x,y,s),D(x+s,y,s),D(x,y+s,s),D(x+s,y+s,s))
+}
